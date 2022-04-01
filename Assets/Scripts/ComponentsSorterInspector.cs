@@ -12,10 +12,10 @@ using VirtaMed.Unity.Common;
 
 namespace VirtaMed.Unity.EditorExtensions.CustomInspectors
 {
-    [CustomEditor(typeof(ComponentsSorter))]
+    [CustomEditor(typeof(ComponentsSorterMono))]
     public class ComponentsSorterInspector : Editor
     {
-        private ComponentsSorter myClass;
+        private ComponentsSorterMono myClass;
 
         public override void OnInspectorGUI()
         {
@@ -46,7 +46,7 @@ namespace VirtaMed.Unity.EditorExtensions.CustomInspectors
         {
             if (UnityEditor.Experimental.SceneManagement.PrefabStageUtility.GetCurrentPrefabStage() != null)
             {
-                myClass = target as ComponentsSorter;
+                myClass = target as ComponentsSorterMono;
                 myClass.SortComponents();
             }
             else
