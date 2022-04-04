@@ -15,17 +15,16 @@ namespace VirtaMed.Unity.EditorExtensions.CustomInspectors
     [CustomEditor(typeof(ComponentsSorterMono))]
     public class ComponentsSorterInspector : Editor
     {
-        private ComponentsSorterMono myClass;
+        private ComponentsSorterMono _componentSorterMono;
 
         public override void OnInspectorGUI()
         {
-            
-            GUILayout.Label ("This will do two things:\n\n1) Separate vanilla Unity from Virtamed component.\n2) The Virtamed component will be sorted to always have the same order.");
+            GUILayout.Label ("This will do two things:\n\n" +
+                "1) Separate vanilla Unity from Virtamed component.\n" +
+                "2) The Virtamed component will be sorted to always have the same order.");
         
             if(GUILayout.Button("Run It")) 
-            {
                 SortComponents();
-            }
         
             if (UnityEditor.Experimental.SceneManagement.PrefabStageUtility.GetCurrentPrefabStage() == null)
             {
@@ -33,10 +32,12 @@ namespace VirtaMed.Unity.EditorExtensions.CustomInspectors
                 GUILayout.Label("You must be in Prefab mode to automatically sort");
                 GUI.contentColor = Color.white;
             }
-            var headerStyle = new GUIStyle(GUI.skin.label);
-            headerStyle.fontSize = 18;
-            headerStyle.fontStyle = FontStyle.Bold;
-            headerStyle.alignment = TextAnchor.MiddleCenter;
+            var headerStyle = new GUIStyle(GUI.skin.label)
+            {
+                fontSize = 18,
+                fontStyle = FontStyle.Bold,
+                alignment = TextAnchor.MiddleCenter
+            };
             GUI.contentColor = Color.green;
             GUILayout.Label("=== VirtaMed Components below ===", headerStyle);
             GUI.contentColor = Color.white;
@@ -44,15 +45,14 @@ namespace VirtaMed.Unity.EditorExtensions.CustomInspectors
 
         private void SortComponents()
         {
-            if (UnityEditor.Experimental.SceneManagement.PrefabStageUtility.GetCurrentPrefabStage() != null)
-            {
-                myClass = target as ComponentsSorterMono;
-                myClass.SortComponents();
-            }
-            else
+            if (UnityEditor.Experimental.SceneManagement.PrefabStageUtility.GetCurrentPrefabStage() == null)
             {
                 Debug.LogError("Sorting only works in Prefab mode");
+                return;
             }
+
+            _componentSorterMono = target as ComponentsSorterMono;
+            _componentSorterMono.SortComponents();
         }
     }
 }
