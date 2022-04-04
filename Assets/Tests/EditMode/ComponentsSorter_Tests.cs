@@ -19,7 +19,8 @@ namespace Tests
     }
 
     public class ComponentsSorter_Tests
-    {[Test]
+    {
+        [Test]
         public void Init_ShouldDisplayCorrectTestCount()
         {
             // Arrange
