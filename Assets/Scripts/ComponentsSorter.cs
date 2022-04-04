@@ -1,10 +1,7 @@
-﻿//#if UNITY_EDITOR
-//using UnityEditor;
-//#endif
-using UnityEngine;
-using System.Linq;
+﻿using System;
 using System.Collections.Generic;
-using System;
+using System.Linq;
+using UnityEngine;
 
 namespace VirtaMed.Unity.Common
 {
@@ -12,14 +9,22 @@ namespace VirtaMed.Unity.Common
     {
         public ComponentWithIndex ComponentWithIndex { get; }
         public int NumberOfMovements { get; }
+
+        public ComponentMovementArgs(ComponentWithIndex componentWithIndex, int numberOfMovements)
+        {
+            ComponentWithIndex = componentWithIndex;
+            NumberOfMovements = numberOfMovements;
+        }
     }
 
-    //[DisallowMultipleComponent]
-    public class ComponentsSorter// : MonoBehaviour
+    public class ComponentsSorter
     {
-        public EventHandler<ComponentMovementArgs> MoveComponentEvent;
+        public event EventHandler<ComponentMovementArgs> MoveComponentUpEvent;
+        public event EventHandler<ComponentMovementArgs> MoveComponentDownEvent;
 
-        private readonly List<string> sortOrder = new List<string>
+        private readonly ComponentsCategorizer _componentsCategorizer;
+
+        private readonly List<string> _sortOrder = new List<string>()
         {
             "FuseRenderMeshComponent",
             "FuseTetMeshComponent",
@@ -36,53 +41,61 @@ namespace VirtaMed.Unity.Common
             "OrganHapticsConfigurator"
         };
 
-        //public void SortComponents(List<Component> components)
-        //{
-        //    var sorter = new ComponentSorterIntoCategories();
-            
-        //    AllVanillaUnityComponentsUp(sorter);
-        //    AllVirtamedComponentsDown(sorter);
-        //    SortVirtamedComponents(sorter);
-            
-        //}
+        public ComponentsSorter(ComponentsCategorizer componentsCategorizer)
+        {
+            _componentsCategorizer = componentsCategorizer;
+        }
 
-        //private void AllVanillaUnityComponentsUp(ComponentSorterIntoCategories sorter)
-        //{
-        //    sorter.Sort(gameObject.GetComponents(typeof(Component)));
-        //    foreach (var component in sorter.UnityComponents)
-        //    {
-        //        if (component.position > sorter.SeparatorPosition)
-        //        {
-        //            MoveComponentUp(component, component.position - sorter.SeparatorPosition);
-        //        }
-        //    }
-        //}
+        public void SortComponents(Component[] components)
+        {
+            AllVanillaUnityComponentsUp(components, _componentsCategorizer);
+            AllVirtamedComponentsDown(components, _componentsCategorizer);
+            SortVirtamedComponents(components, _componentsCategorizer);
+        }
 
-        //private void AllVirtamedComponentsDown(ComponentSorterIntoCategories sorter)
-        //{
-        //    sorter.Sort(gameObject.GetComponents(typeof(Component)));
-        //    foreach (var component in sorter.VirtaComponents)
-        //    {
-        //        if (component.position < sorter.SeparatorPosition)
-        //        {
-        //            MoveComponentDown(component, sorter.SeparatorPosition - component.position);
-        //        }
-        //    }
-        //}
- 
-        //private void SortVirtamedComponents(ComponentSorterIntoCategories sorter)
-        //{
-        //    foreach (var toSort in Enumerable.Reverse(sortOrder))
-        //    {
-        //        sorter.Sort(gameObject.GetComponents(typeof(Component)), toSort);
-        //        if (sorter.FoundComponents.Count > 0)
-        //        {
-        //            foreach (var component in sorter.FoundComponents)
-        //            {
-        //                MoveComponentUp(component, (component.position - sorter.SeparatorPosition) - 1);
-        //            }
-        //        }
-        //    }
-        //}
+        private void AllVanillaUnityComponentsUp(Component[] components, ComponentsCategorizer sorter)
+        {
+            sorter.Sort(components);
+            foreach (var component in sorter.UnityComponents)
+            {
+                if (component.position <= sorter.SeparatorPosition)
+                    continue;
+
+                MoveComponentUpEvent?.Invoke(
+                    this,
+                    new ComponentMovementArgs(component, component.position - sorter.SeparatorPosition));
+            }
+        }
+
+        private void AllVirtamedComponentsDown(Component[] components, ComponentsCategorizer sorter)
+        {
+            sorter.Sort(components);
+            foreach (var component in sorter.VirtaComponents)
+            {
+                if (component.position >= sorter.SeparatorPosition)
+                    continue;
+
+                MoveComponentDownEvent(
+                    this,
+                    new ComponentMovementArgs(component, sorter.SeparatorPosition - component.position));
+            }
+        }
+
+        private void SortVirtamedComponents(Component[] components, ComponentsCategorizer sorter)
+        {
+            foreach (var toSort in Enumerable.Reverse(_sortOrder))
+            {
+                sorter.Sort(components, toSort);
+                if (sorter.FoundComponents.Count <= 0)
+                    continue;
+
+                foreach (var component in sorter.FoundComponents)
+                {
+                    MoveComponentUpEvent?.Invoke(
+                        this,
+                        new ComponentMovementArgs(component, component.position - sorter.SeparatorPosition - 1));
+                }
+            }
+        }
     }
 }
