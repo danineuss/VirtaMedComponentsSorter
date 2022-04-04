@@ -18,6 +18,8 @@ namespace VirtaMed.Unity.Common
     [DisallowMultipleComponent]
     public partial class ComponentsSorterMono : MonoBehaviour
     {
+        private ComponentsSorter _componentsSorter = null;
+        
         private readonly List<string> sortOrder = new List<string>
         {
             "FuseRenderMeshComponent",
@@ -37,11 +39,19 @@ namespace VirtaMed.Unity.Common
 
         public void SortComponents()
         {
-            var sorter = new ComponentsCategorizer();
+            if (_componentsSorter == null)
+                InitializeComponentsSorter();
+
+            var sorter = new ComponentsCategorizer(this.GetType().ToString());
 
             AllVanillaUnityComponentsUp(sorter);
             AllVirtamedComponentsDown(sorter);
             SortVirtamedComponents(sorter);
+        }
+
+        private void InitializeComponentsSorter()
+        {
+            _componentsSorter = new ComponentsSorter();
         }
 
         private void AllVanillaUnityComponentsUp(ComponentsCategorizer sorter)

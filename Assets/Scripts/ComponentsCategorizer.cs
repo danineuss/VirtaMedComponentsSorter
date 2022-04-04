@@ -33,6 +33,13 @@ namespace VirtaMed.Unity.Common
 
         public int SeparatorPosition;
 
+        private readonly string _separatorClassType;
+
+        public ComponentsCategorizer(string separatorClassType)
+        {
+            _separatorClassType = separatorClassType;
+        }
+
         public void Sort(Component[] components, string nameFilter = "")
         {
             VirtaComponents = new List<ComponentWithIndex>();
@@ -52,7 +59,7 @@ namespace VirtaMed.Unity.Common
 
                 // Separate unity and Virtamed component into two lists.
                 // This sorter script marks as separatation between VirtaMed and Unity components
-                if (GetType().ToString().Contains(componentType))
+                if (_separatorClassType.Contains(componentType))
                 {
                     SeparatorPosition = counter;
                 }

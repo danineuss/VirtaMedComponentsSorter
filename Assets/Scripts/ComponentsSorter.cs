@@ -4,12 +4,21 @@
 using UnityEngine;
 using System.Linq;
 using System.Collections.Generic;
+using System;
 
 namespace VirtaMed.Unity.Common
 {
+    public class ComponentMovementArgs : EventArgs
+    {
+        public ComponentWithIndex ComponentWithIndex { get; }
+        public int NumberOfMovements { get; }
+    }
+
     //[DisallowMultipleComponent]
     public class ComponentsSorter// : MonoBehaviour
     {
+        public EventHandler<ComponentMovementArgs> MoveComponentEvent;
+
         private readonly List<string> sortOrder = new List<string>
         {
             "FuseRenderMeshComponent",
@@ -75,27 +84,5 @@ namespace VirtaMed.Unity.Common
         //        }
         //    }
         //}
-
-        private static void MoveComponentDown(ComponentWithIndex component, int numberOfMovements)
-        {
-            while (numberOfMovements > 0)
-            {
-#if UNITY_EDITOR
-                UnityEditorInternal.ComponentUtility.MoveComponentDown(component.component);
-#endif
-                numberOfMovements--;
-            }
-        }
-
-        private static void MoveComponentUp(ComponentWithIndex component, int numberOfMovements)
-        {
-            while (numberOfMovements > 0)
-            {
-#if UNITY_EDITOR
-                UnityEditorInternal.ComponentUtility.MoveComponentUp(component.component);
-#endif
-                numberOfMovements--;
-            }
-        }
     }
 }
