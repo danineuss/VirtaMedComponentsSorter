@@ -51,7 +51,8 @@ namespace Assets.Scripts
             }
 
             _componentSorterMono = target as ComponentsSorterMono;
-            _componentSorterMono.SortComponents();
+            if (_componentSorterMono != null) 
+                _componentSorterMono.SortComponents();
         }
     }
 }

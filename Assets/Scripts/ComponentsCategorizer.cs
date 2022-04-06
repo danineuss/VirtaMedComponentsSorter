@@ -8,7 +8,6 @@
 
 #if UNITY_EDITOR
 #endif
-using UnityEngine;
 using System.Collections.Generic;
 
 namespace Assets.Scripts
@@ -46,7 +45,7 @@ namespace Assets.Scripts
                 }
 
                 // Separate unity and Virtamed component into two lists.
-                // This sorter script marks as separatation between VirtaMed and Unity components
+                // This sorter script marks as separation between VirtaMed and Unity components
                 if (_separatorClassType.Contains(componentType))
                 {
                     SeparatorPosition = counter;
