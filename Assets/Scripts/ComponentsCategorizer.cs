@@ -40,32 +40,29 @@ namespace Assets.Scripts
                 var componentType = component.TypeString;
 
                 if (componentType.Contains(nameFilter))
-                {
                     FoundComponents.Add(new ComponentWithIndex(counter, component.Component));
-                }
 
                 // Separate unity and Virtamed component into two lists.
                 // This sorter script marks as separation between VirtaMed and Unity components
                 if (_separatorClassType.Contains(componentType))
                 {
-                    SeparatorPosition = counter;
+                    SeparatorPosition = counter++;
+                    continue;
+                }
+
+                if (componentType.Contains("Virta") ||
+                    componentType.Contains("Fuse") ||
+                    componentType.Contains("SoftBody") ||
+                    componentType.Contains("OrganHaptics") ||
+                    componentType.Contains("ICG"))
+                {
+                    VirtaComponents.Add(new ComponentWithIndex(counter, component.Component));
                 }
                 else
                 {
-                    if (componentType.Contains("Virta") ||
-                        componentType.Contains("Fuse") ||
-                        componentType.Contains("SoftBody") ||
-                        componentType.Contains("OrganHaptics") ||
-                        componentType.Contains("ICG"))
-                    {
-                        VirtaComponents.Add(new ComponentWithIndex(counter, component.Component));
-                    }
-                    else
-                    {
-                        UnityComponents.Add(new ComponentWithIndex(counter, component.Component));
-                    }
+                    UnityComponents.Add(new ComponentWithIndex(counter, component.Component));
                 }
-                counter += 1;
+                counter++;
             }
         }
     }
