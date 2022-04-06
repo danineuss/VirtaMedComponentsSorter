@@ -8,7 +8,6 @@
 
 using UnityEditor;
 using UnityEngine;
-using VirtaMed.Unity.Common;
 
 namespace Assets.Scripts
 {
