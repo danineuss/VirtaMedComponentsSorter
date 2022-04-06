@@ -40,7 +40,7 @@ namespace Assets.Scripts
             while (numberOfMovements > 0)
             {
 #if UNITY_EDITOR
-                UnityEditorInternal.ComponentUtility.MoveComponentDown(e.ComponentWithIndex.component);
+                UnityEditorInternal.ComponentUtility.MoveComponentDown(e.ComponentWithIndex.Component);
 #endif
                 numberOfMovements--;
             }
@@ -52,7 +52,7 @@ namespace Assets.Scripts
             while (numberOfMovements > 0)
             {
 #if UNITY_EDITOR
-                UnityEditorInternal.ComponentUtility.MoveComponentUp(e.ComponentWithIndex.component);
+                UnityEditorInternal.ComponentUtility.MoveComponentUp(e.ComponentWithIndex.Component);
 #endif
                 numberOfMovements--;
             }

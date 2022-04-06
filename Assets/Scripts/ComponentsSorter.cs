@@ -7,10 +7,10 @@ namespace Assets.Scripts
 {
     public class ComponentMovementArgs : EventArgs
     {
-        public ComponentWithIndex ComponentWithIndex { get; }
+        public IComponentWithIndex ComponentWithIndex { get; }
         public int NumberOfMovements { get; }
 
-        public ComponentMovementArgs(ComponentWithIndex componentWithIndex, int numberOfMovements)
+        public ComponentMovementArgs(IComponentWithIndex componentWithIndex, int numberOfMovements)
         {
             ComponentWithIndex = componentWithIndex;
             NumberOfMovements = numberOfMovements;

@@ -2,9 +2,16 @@ using UnityEngine;
 
 namespace Assets.Scripts
 {
-    public class ComponentWithIndex
+    public interface IComponentWithIndex
     {
-        public int Position { get; }
+        int Position { get; set; }
+        Component Component { get; }
+        string TypeString { get; }
+    }
+
+    public class ComponentWithIndex : IComponentWithIndex
+    {
+        public int Position { get; set; }
         public Component Component { get; }
         public string TypeString => Component.GetType().ToString();
 

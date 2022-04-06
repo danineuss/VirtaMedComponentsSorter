@@ -13,23 +13,11 @@ using System.Collections.Generic;
 
 namespace Assets.Scripts
 {
-    public class ComponentWithIndex
-    {
-        public int position;
-        public Component component;
-
-        public ComponentWithIndex(int position, Component component)
-        {
-            this.position = position;
-            this.component = component;
-        }
-    }
-
     public class ComponentsCategorizer
     {
-        public List<ComponentWithIndex> VirtaComponents;
-        public List<ComponentWithIndex> UnityComponents;
-        public List<ComponentWithIndex> FoundComponents;
+        public List<IComponentWithIndex> VirtaComponents;
+        public List<IComponentWithIndex> UnityComponents;
+        public List<IComponentWithIndex> FoundComponents;
 
         public int SeparatorPosition;
 
@@ -40,21 +28,21 @@ namespace Assets.Scripts
             _separatorClassType = separatorClassType;
         }
 
-        public void Sort(Component[] components, string nameFilter = "")
+        public void Sort(List<IComponentWithIndex> componentsWithIndex, string nameFilter = "")
         {
-            VirtaComponents = new List<ComponentWithIndex>();
-            UnityComponents = new List<ComponentWithIndex>();
-            FoundComponents = new List<ComponentWithIndex>();
+            VirtaComponents = new List<IComponentWithIndex>();
+            UnityComponents = new List<IComponentWithIndex>();
+            FoundComponents = new List<IComponentWithIndex>();
             SeparatorPosition = 0;
 
-            int counter = 0;
-            foreach (var component in components)
+            var counter = 0;
+            foreach (var component in componentsWithIndex)
             {
-                var componentType = component.GetType().ToString();
+                var componentType = component.TypeString;
 
                 if (componentType.Contains(nameFilter))
                 {
-                    FoundComponents.Add(new ComponentWithIndex(counter, component));
+                    FoundComponents.Add(new ComponentWithIndex(counter, component.Component));
                 }
 
                 // Separate unity and Virtamed component into two lists.
@@ -71,11 +59,11 @@ namespace Assets.Scripts
                         componentType.Contains("OrganHaptics") ||
                         componentType.Contains("ICG"))
                     {
-                        VirtaComponents.Add(new ComponentWithIndex(counter, component));
+                        VirtaComponents.Add(new ComponentWithIndex(counter, component.Component));
                     }
                     else
                     {
-                        UnityComponents.Add(new ComponentWithIndex(counter, component));
+                        UnityComponents.Add(new ComponentWithIndex(counter, component.Component));
                     }
                 }
                 counter += 1;
