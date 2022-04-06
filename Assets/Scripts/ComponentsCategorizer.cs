@@ -11,7 +11,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-namespace VirtaMed.Unity.Common
+namespace Assets.Scripts
 {
     public class ComponentWithIndex
     {

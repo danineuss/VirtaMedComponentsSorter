@@ -1,10 +1,8 @@
-using Assets.Scripts;
-using NSubstitute;
-using NUnit.Framework;
 using System.Collections.Generic;
+using NUnit.Framework;
 using UnityEngine;
 
-namespace Tests
+namespace Tests.EditMode
 {
     internal class Foo
     {
@@ -18,7 +16,7 @@ namespace Tests
         }
     }
 
-    public class ComponentsSorter_Tests
+    public class ComponentsSorterTests
     {
         [Test]
         public void Init_ShouldDisplayCorrectTestCount()

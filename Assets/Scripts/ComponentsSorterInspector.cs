@@ -10,7 +10,7 @@ using UnityEditor;
 using UnityEngine;
 using VirtaMed.Unity.Common;
 
-namespace VirtaMed.Unity.EditorExtensions.CustomInspectors
+namespace Assets.Scripts
 {
     [CustomEditor(typeof(ComponentsSorterMono))]
     public class ComponentsSorterInspector : Editor

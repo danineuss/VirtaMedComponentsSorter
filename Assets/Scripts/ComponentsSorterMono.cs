@@ -11,7 +11,7 @@ using UnityEditor;
 #endif
 using UnityEngine;
 
-namespace VirtaMed.Unity.Common
+namespace Assets.Scripts
 {
     [DisallowMultipleComponent]
     public partial class ComponentsSorterMono : MonoBehaviour

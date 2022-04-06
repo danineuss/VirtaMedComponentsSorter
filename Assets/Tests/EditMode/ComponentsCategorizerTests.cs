@@ -1,30 +1,34 @@
-﻿using NSubstitute;
-using NUnit.Framework;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Assets.Scripts;
+using NSubstitute;
+using NUnit.Framework;
 using UnityEngine;
-using VirtaMed.Unity.Common;
 
-namespace Tests
+namespace Tests.EditMode
 {
-    public class ComponentsCategorizer_Tests
+    public class ComponentsCategorizerTests
     {
         private ComponentsCategorizer _componentsCategorizer;
 
-        [Test, TestCaseSource("FindAllComponentsWithoutNameFilterCaseSource")]
+        [Test, TestCaseSource(nameof(FindAllComponentsWithoutNameFilterCaseSource))]
         public void Sort_ShouldFindAllComponentsWithoutNameFilter(
-            Component[] components, string nameFilter, List<ComponentWithIndex> expectedComponentsFound)
+            Component[] components, string nameFilter, List<IComponentWithIndex> expectedComponentsFound)
         {
+            // Arrange
             var a = components.First();
             var b = a.GetType().ToString();
+            
+            // Act
+            _componentsCategorizer.Sort(components);
+            
+            // Assert
+            _componentsCategorizer.FoundComponents()
         }
 
         private static IEnumerable<TestCaseData> FindAllComponentsWithoutNameFilterCaseSource()
         {
-            var component = Substitute.For<Component>();
             var type = Substitute.For<Type>();
             type.ToString().Returns("foo");
             component.GetType().ToString().Returns("foo");

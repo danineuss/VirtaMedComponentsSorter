@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace VirtaMed.Unity.Common
+namespace Assets.Scripts
 {
     public class ComponentMovementArgs : EventArgs
     {
