@@ -19,8 +19,7 @@ namespace Assets.Scripts
 
     public class ComponentsSorter
     {
-        public event EventHandler<ComponentMovementArgs> MoveComponentUpEvent;
-        public event EventHandler<ComponentMovementArgs> MoveComponentDownEvent;
+        public event EventHandler<ComponentMovementArgs> MoveComponentEvent;
 
         private readonly ComponentsCategorizer _componentsCategorizer;
 
@@ -46,54 +45,47 @@ namespace Assets.Scripts
             _componentsCategorizer = componentsCategorizer;
         }
 
-        public void SortComponents(Component[] components)
+        public void AllVanillaUnityComponentsUp(List<IComponentWithIndex> componentWithIndices)
         {
-            AllVanillaUnityComponentsUp(components, _componentsCategorizer);
-            AllVirtamedComponentsDown(components, _componentsCategorizer);
-            SortVirtamedComponents(components, _componentsCategorizer);
-        }
-
-        private void AllVanillaUnityComponentsUp(Component[] components, ComponentsCategorizer sorter)
-        {
-            sorter.Sort(components);
-            foreach (var component in sorter.UnityComponents)
+            _componentsCategorizer.Sort(componentWithIndices);
+            foreach (var component in _componentsCategorizer.UnityComponents)
             {
-                if (component.position <= sorter.SeparatorPosition)
+                if (component.Position <= _componentsCategorizer.SeparatorPosition)
                     continue;
 
-                MoveComponentUpEvent?.Invoke(
-                    this,
-                    new ComponentMovementArgs(component, component.position - sorter.SeparatorPosition));
+                var componentMovementArgs = new ComponentMovementArgs(
+                    component, component.Position - _componentsCategorizer.SeparatorPosition);
+                MoveComponentEvent?.Invoke(this, componentMovementArgs);
             }
         }
 
-        private void AllVirtamedComponentsDown(Component[] components, ComponentsCategorizer sorter)
+        public void AllVirtamedComponentsDown(List<IComponentWithIndex> componentWithIndices)
         {
-            sorter.Sort(components);
-            foreach (var component in sorter.VirtaComponents)
+            _componentsCategorizer.Sort(componentWithIndices);
+            foreach (var component in _componentsCategorizer.VirtaComponents)
             {
-                if (component.position >= sorter.SeparatorPosition)
+                if (component.Position >= _componentsCategorizer.SeparatorPosition)
                     continue;
 
-                MoveComponentDownEvent(
-                    this,
-                    new ComponentMovementArgs(component, sorter.SeparatorPosition - component.position));
+                var componentMovementArgs = new ComponentMovementArgs(
+                    component, component.Position - _componentsCategorizer.SeparatorPosition);
+                MoveComponentEvent?.Invoke(this, componentMovementArgs);
             }
         }
 
-        private void SortVirtamedComponents(Component[] components, ComponentsCategorizer sorter)
+        public void SortVirtamedComponents(List<IComponentWithIndex> componentWithIndices)
         {
             foreach (var toSort in Enumerable.Reverse(_sortOrder))
             {
-                sorter.Sort(components, toSort);
-                if (sorter.FoundComponents.Count <= 0)
+                _componentsCategorizer.Sort(componentWithIndices, toSort);
+                if (_componentsCategorizer.FoundComponents.Count <= 0)
                     continue;
 
-                foreach (var component in sorter.FoundComponents)
+                foreach (var component in _componentsCategorizer.FoundComponents)
                 {
-                    MoveComponentUpEvent?.Invoke(
-                        this,
-                        new ComponentMovementArgs(component, component.position - sorter.SeparatorPosition - 1));
+                    var componentMovementArgs = new ComponentMovementArgs(
+                        component, component.Position - _componentsCategorizer.SeparatorPosition - 1);
+                    MoveComponentEvent?.Invoke(this, componentMovementArgs);
                 }
             }
         }
