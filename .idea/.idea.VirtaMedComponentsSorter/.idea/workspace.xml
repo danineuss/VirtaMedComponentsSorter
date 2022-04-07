@@ -5,10 +5,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d3595ebb-1f2d-41f6-882f-18a6fef9a9e6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Tests/EditMode/Helper.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Tests/EditMode/Helper.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Components.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Components/BarVirtaComponent.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Components/BarVirtaComponent.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Components/BazVirtaComponent.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Components/BazVirtaComponent.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Components/FooVirtaComponent.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Components/FooVirtaComponent.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Components/FuseCobaComponent.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Components/FuseCobaComponent.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Components/FuseRenderMeshComponent.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Components/FuseRenderMeshComponent.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Components/SoftBodyAnatomy.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Components/SoftBodyAnatomy.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.VirtaMedComponentsSorter/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.VirtaMedComponentsSorter/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tests/EditMode/ComponentsCategorizerTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tests/EditMode/ComponentsCategorizerTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/TestObject.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/TestObject.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ComponentsSorter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ComponentsSorter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ComponentsSorterMono.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ComponentsSorterMono.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VirtamedComponent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Components/VirtamedComponent.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VirtamedComponent.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Components/VirtamedComponent.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tests/EditMode/ComponentsSorterTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tests/EditMode/ComponentsSorterTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tests/EditMode/Helper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tests/EditMode/Helper.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,16 +44,22 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/10b6135e63434fdba4fc6c109928ab3b50800/df/4a0628f7/TestCaseSourceAttribute.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/63ccfe108ffa44728b417cb47fb2f841763000/12/abf7f667/EditorApplication.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.test-framework@1.1.29/UnityEditor.TestRunner/TestRunner/Utils/TestListProvider.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/metadata/f58aa9ca81be4f6db17ef603de68682e45600/6e/85a80f20/Moq.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.test-framework@1.1.29/UnityEditor.TestRunner/TestRun/Tasks/LegacyEditModeRunTask.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/bc087a59f3c04c9aad8fcd92325a4a2859c00/1c/4279ae63/InspectorElement.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/d3b66f0ad4e34a55b6ef91ab8487819313c000/8b/ab67e1e7/Component.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/10b6135e63434fdba4fc6c109928ab3b50800/ee/4a4bfd29/MethodWrapper.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.test-framework@1.1.29/UnityEditor.TestRunner/TestRun/Tasks/BuildTestTreeTask.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/10b6135e63434fdba4fc6c109928ab3b50800/6b/47d1c73e/Reflect.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/UI/Core/DefaultControls.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/351e49e2a5bf4fd6beabb458ce2255f3ff600/01/392822fc/Expression.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
+    <option name="selectedTabId" value="SWEA" />
   </component>
   <component name="ProjectId" id="27Kwkg5aZROhOhkglxdovLqZ3US" />
   <component name="ProjectLevelVcsManager">
@@ -50,7 +74,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="XThreadsFramesViewSplitterKey" value="0.21846554" />
+    <property name="XThreadsFramesViewSplitterKey" value="0.181439" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -70,10 +94,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="3020">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="27480">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="3020" />
+      <option name="pid" value="27480" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -92,7 +116,7 @@
       <workItem from="1649082245720" duration="740000" />
       <workItem from="1649251962138" duration="159000" />
       <workItem from="1649252331217" duration="16131000" />
-      <workItem from="1649342762316" duration="2307000" />
+      <workItem from="1649342762316" duration="3919000" />
     </task>
     <servers />
   </component>
@@ -120,59 +144,38 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/ComponentsCategorizer.cs</url>
-          <line>48</line>
-          <properties documentPath="C:\Users\danie\Documents\Git\VirtaMedComponentsSorter\Assets\Scripts\ComponentsCategorizer.cs" initialLine="48" containingFunctionPresentation="method 'Sort'">
+          <url>file://$PROJECT_DIR$/Assets/Tests/EditMode/ComponentsSorterTests.cs</url>
+          <line>157</line>
+          <properties documentPath="C:\Users\danie\Documents\Git\VirtaMedComponentsSorter\Assets\Tests\EditMode\ComponentsSorterTests.cs" initialLine="157" containingFunctionPresentation="method 'AllVirtamedComponentsDown_ShouldTriggerCorrectMovementEvents'">
             <startOffsets>
-              <option value="1758" />
+              <option value="6792" />
             </startOffsets>
             <endOffsets>
-              <option value="1788" />
+              <option value="6867" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="40" />
+          <option name="timeStamp" value="71" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/ComponentsCategorizer.cs</url>
-          <line>42</line>
-          <properties documentPath="C:\Users\danie\Documents\Git\VirtaMedComponentsSorter\Assets\Scripts\ComponentsCategorizer.cs" initialLine="42" containingFunctionPresentation="method 'Sort'">
+          <url>file://$PROJECT_DIR$/Assets/Tests/EditMode/Helper.cs</url>
+          <line>34</line>
+          <properties documentPath="C:\Users\danie\Documents\Git\VirtaMedComponentsSorter\Assets\Tests\EditMode\Helper.cs" initialLine="34" containingFunctionPresentation="method 'VirtamedComponentSubstitute'">
             <startOffsets>
-              <option value="1410" />
+              <option value="1126" />
             </startOffsets>
             <endOffsets>
-              <option value="1484" />
+              <option value="1150" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="41" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/ComponentsCategorizer.cs</url>
-          <line>58</line>
-          <properties documentPath="C:\Users\danie\Documents\Git\VirtaMedComponentsSorter\Assets\Scripts\ComponentsCategorizer.cs" initialLine="58" containingFunctionPresentation="method 'Sort'">
-            <startOffsets>
-              <option value="2156" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2230" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="47" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/ComponentsCategorizer.cs</url>
-          <line>62</line>
-          <properties documentPath="C:\Users\danie\Documents\Git\VirtaMedComponentsSorter\Assets\Scripts\ComponentsCategorizer.cs" initialLine="62" containingFunctionPresentation="method 'Sort'">
-            <startOffsets>
-              <option value="2308" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2382" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="48" />
+          <option name="timeStamp" value="83" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="UNITY_DEBUG_RUN_CONFIGURATION">
+        <watch expression="new System.Collections.Generic.Mscorlib_CollectionDebugView&lt;Assets.Scripts.ComponentMovementArgs&gt;(expectedMovementEventArgs).Items[0].ComponentWithIndex" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
