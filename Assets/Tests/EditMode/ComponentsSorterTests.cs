@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Assets.Scripts;
 using Moq;
 using NUnit.Framework;
@@ -279,6 +280,83 @@ namespace Tests.EditMode
                 },
                 componentsCategorizerD,
                 new List<ComponentMovementArgs>()
+            );
+        }
+        
+        [Test, TestCaseSource(nameof(SortVirtamedComponentsCaseSource))]
+        public void SortVirtamedComponents_ShouldTriggerCorrectMovementEvents(
+            List<IComponentWithIndex> components,
+            Mock<IComponentsCategorizer> componentsCategorizerMock,
+            List<string> sortOrder,
+            List<ComponentMovementArgs> expectedMovementEventArgs)
+        {
+            // Arrange
+            _componentsSorter = new ComponentsSorter(componentsCategorizerMock.Object);
+            var componentMovementArgsList = new List<ComponentMovementArgs>();
+            
+            // Act
+            _componentsSorter.MoveComponentEvent += delegate(object sender, ComponentMovementArgs args)
+            {
+                componentMovementArgsList.Add(args);
+            };
+            foreach (var toSort in Enumerable.Reverse(sortOrder))
+                _componentsSorter.SortVirtamedComponents(components, toSort);
+
+            // Assert
+            componentsCategorizerMock.Verify(
+                mock => mock.Sort(components, It.IsAny<string>()), 
+                Times.Exactly(sortOrder.Count));
+            Assert.True(Helper.IsArgsListEqual(expectedMovementEventArgs, componentMovementArgsList));
+        }
+
+        private static IEnumerable<TestCaseData> SortVirtamedComponentsCaseSource()
+        {
+            var componentsCategorizerA = new Mock<IComponentsCategorizer>();
+            componentsCategorizerA
+                .SetupSequence(mock => mock.FoundComponents)
+                .Returns(new List<IComponentWithIndex>
+                {
+                    Helper.FooVirtaComponent(1),
+                    Helper.FooVirtaComponent(3),
+                })
+                .Returns(new List<IComponentWithIndex>
+                {
+                    Helper.BazVirtaComponent(3),
+                })
+                .Returns(new List<IComponentWithIndex>
+                {
+                    Helper.BarVirtaComponent(4),
+                    Helper.BarVirtaComponent(5)
+                });
+            componentsCategorizerA
+                .SetupGet(mock => mock.SeparatorPosition)
+                .Returns(0);
+
+            yield return new TestCaseData(
+                new List<IComponentWithIndex>
+                {
+                    Helper.SeparatorComponentSubstitute(0, _cSeparatorClassType),
+                    Helper.FooVirtaComponent(1),
+                    Helper.BazVirtaComponent(2),
+                    Helper.FooVirtaComponent(3),
+                    Helper.BarVirtaComponent(4),
+                    Helper.BarVirtaComponent(5),
+                },
+                componentsCategorizerA,
+                new List<string>
+                {
+                    "BarVirtaComponent",
+                    "BazVirtaComponent",
+                    "FooVirtaComponent"
+                },
+                new List<ComponentMovementArgs>
+                {
+                    new ComponentMovementArgs(Helper.FooVirtaComponent(1), 0),
+                    new ComponentMovementArgs(Helper.FooVirtaComponent(3), 2),
+                    new ComponentMovementArgs(Helper.BazVirtaComponent(3), 2),
+                    new ComponentMovementArgs(Helper.BarVirtaComponent(4), 3),
+                    new ComponentMovementArgs(Helper.BarVirtaComponent(5), 4)
+                }
             );
         }
     }
