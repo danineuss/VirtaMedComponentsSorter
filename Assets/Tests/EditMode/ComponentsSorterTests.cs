@@ -126,6 +126,80 @@ namespace Tests.EditMode
                     new ComponentMovementArgs(Helper.UnityComponentSubstitute(4), 4),
                 }
             );
+            
+            var componentsCategorizerD = new Mock<IComponentsCategorizer>();
+            componentsCategorizerD
+                .SetupGet(mock => mock.UnityComponents)
+                .Returns(new List<IComponentWithIndex>());
+            componentsCategorizerD
+                .SetupGet(mock => mock.SeparatorPosition)
+                .Returns(0);
+            
+            yield return new TestCaseData(
+                new List<IComponentWithIndex>
+                {
+                    Helper.SeparatorComponentSubstitute(0, _cSeparatorClassType),
+                    Helper.VirtamedComponentSubstitute(1),
+                    Helper.VirtamedComponentSubstitute(2),
+                },
+                componentsCategorizerD,
+                new List<ComponentMovementArgs>()
+            );
+        }
+        
+        [Test, TestCaseSource(nameof(AllVirtamedComponentsDownCaseSource))]
+        public void AllVirtamedComponentsDown_ShouldTriggerCorrectMovementEvents(
+            List<IComponentWithIndex> components,
+            Mock<IComponentsCategorizer> componentsCategorizerMock,
+            List<ComponentMovementArgs> expectedMovementEventArgs)
+        {
+            // Arrange
+            _componentsSorter = new ComponentsSorter(componentsCategorizerMock.Object);
+            var componentMovementArgsList = new List<ComponentMovementArgs>();
+            
+            // Act
+            _componentsSorter.MoveComponentEvent += delegate(object sender, ComponentMovementArgs args)
+            {
+                componentMovementArgsList.Add(args);
+            };
+            _componentsSorter.AllVirtamedComponentsDown(components);
+        
+            // Assert
+            componentsCategorizerMock
+                .Verify(mock => mock.Sort(components, ""), Times.Once);
+            Assert.True(Helper.IsArgsListEqual(expectedMovementEventArgs, componentMovementArgsList));
+        }
+        
+        private static IEnumerable<TestCaseData> AllVirtamedComponentsDownCaseSource()
+        {
+            var componentsCategorizerA = new Mock<IComponentsCategorizer>();
+            componentsCategorizerA
+                .SetupGet(mock => mock.VirtaComponents)
+                .Returns(new List<IComponentWithIndex>
+                {
+                    Helper.VirtamedComponentSubstitute(0),
+                    Helper.VirtamedComponentSubstitute(5)
+                });
+            componentsCategorizerA
+                .SetupGet(mock => mock.SeparatorPosition)
+                .Returns(2);
+
+            yield return new TestCaseData(
+                new List<IComponentWithIndex>
+                {
+                    Helper.VirtamedComponentSubstitute(0),
+                    Helper.UnityComponentSubstitute(1),
+                    Helper.SeparatorComponentSubstitute(2, _cSeparatorClassType),
+                    Helper.UnityComponentSubstitute(3),
+                    Helper.UnityComponentSubstitute(4),
+                    Helper.VirtamedComponentSubstitute(5)
+                },
+                componentsCategorizerA,
+                new List<ComponentMovementArgs>
+                {
+                    new ComponentMovementArgs(Helper.VirtamedComponentSubstitute(0), -2)
+                }
+            );
         }
     }
 }
