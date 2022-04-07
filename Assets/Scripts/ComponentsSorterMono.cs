@@ -17,7 +17,7 @@ namespace Assets.Scripts
     {
         private ComponentsSorter _componentsSorter;
 
-        private readonly List<string> _virtamedIdentifiers = new List<string>()
+        private readonly List<string> _virtamedIdentifiers = new List<string>
         {
             "Virta",
             "Fuse",

@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using Assets.Scripts;
 using Moq;
 using NUnit.Framework;
-using UnityEditor;
 
 namespace Tests.EditMode
 {
