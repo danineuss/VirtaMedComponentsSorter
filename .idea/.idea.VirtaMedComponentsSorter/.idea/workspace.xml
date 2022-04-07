@@ -5,17 +5,53 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d3595ebb-1f2d-41f6-882f-18a6fef9a9e6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/ComponentWithIndex.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/ComponentWithIndex.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/TestObject.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/TestObject.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ComponentsCategorizer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ComponentsCategorizer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ComponentsSorter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ComponentsSorter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ComponentsSorterInspector.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ComponentsSorterInspector.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ComponentsSorterMono.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ComponentsSorterMono.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tests/EditMode/ComponentsCategorizer_Tests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tests/EditMode/ComponentsCategorizerTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tests/EditMode/ComponentsCategorizer_Tests.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tests/EditMode/ComponentsCategorizerTests.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tests/EditMode/ComponentsSorter_Tests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tests/EditMode/ComponentsSorterTests.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tests/EditMode/ComponentsSorter_Tests.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tests/EditMode/ComponentsSorterTests.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.VirtaMedComponentsSorter/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.VirtaMedComponentsSorter/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tests/EditMode/ComponentsCategorizerTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tests/EditMode/ComponentsCategorizerTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tests/EditMode/EditMode.asmdef" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tests/EditMode/EditMode.asmdef" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/Castle.Core.4.4.0/.signature.p7s" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/Castle.Core.4.4.0/ASL - Apache Software Foundation License.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/Castle.Core.4.4.0/CHANGELOG.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/Castle.Core.4.4.0/Castle.Core.4.4.0.nupkg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/Castle.Core.4.4.0/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/Castle.Core.4.4.0/lib/net35/Castle.Core.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/Castle.Core.4.4.0/lib/net35/Castle.Core.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/Castle.Core.4.4.0/lib/net40/Castle.Core.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/Castle.Core.4.4.0/lib/net40/Castle.Core.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/Castle.Core.4.4.0/lib/net45/Castle.Core.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/Castle.Core.4.4.0/lib/net45/Castle.Core.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/Castle.Core.4.4.0/lib/netstandard1.3/Castle.Core.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/Castle.Core.4.4.0/lib/netstandard1.3/Castle.Core.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/Castle.Core.4.4.0/lib/netstandard1.5/Castle.Core.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/Castle.Core.4.4.0/lib/netstandard1.5/Castle.Core.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/Castle.Core.4.4.0/readme.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/System.Threading.Tasks.Extensions.4.5.3/.signature.p7s" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/System.Threading.Tasks.Extensions.4.5.3/LICENSE.TXT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/System.Threading.Tasks.Extensions.4.5.3/System.Threading.Tasks.Extensions.4.5.3.nupkg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/System.Threading.Tasks.Extensions.4.5.3/THIRD-PARTY-NOTICES.TXT" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/System.Threading.Tasks.Extensions.4.5.3/lib/MonoAndroid10/_._" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/System.Threading.Tasks.Extensions.4.5.3/lib/MonoTouch10/_._" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/System.Threading.Tasks.Extensions.4.5.3/lib/netcoreapp2.1/_._" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/System.Threading.Tasks.Extensions.4.5.3/lib/netstandard1.0/System.Threading.Tasks.Extensions.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/System.Threading.Tasks.Extensions.4.5.3/lib/netstandard1.0/System.Threading.Tasks.Extensions.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/System.Threading.Tasks.Extensions.4.5.3/lib/netstandard2.0/System.Threading.Tasks.Extensions.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/System.Threading.Tasks.Extensions.4.5.3/lib/netstandard2.0/System.Threading.Tasks.Extensions.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/System.Threading.Tasks.Extensions.4.5.3/lib/portable-net45+win8+wp8+wpa81/System.Threading.Tasks.Extensions.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/System.Threading.Tasks.Extensions.4.5.3/lib/portable-net45+win8+wp8+wpa81/System.Threading.Tasks.Extensions.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/System.Threading.Tasks.Extensions.4.5.3/lib/xamarinios10/_._" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/System.Threading.Tasks.Extensions.4.5.3/lib/xamarinmac20/_._" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/System.Threading.Tasks.Extensions.4.5.3/lib/xamarintvos10/_._" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/System.Threading.Tasks.Extensions.4.5.3/lib/xamarinwatchos10/_._" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/System.Threading.Tasks.Extensions.4.5.3/ref/MonoAndroid10/_._" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/System.Threading.Tasks.Extensions.4.5.3/ref/MonoTouch10/_._" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/System.Threading.Tasks.Extensions.4.5.3/ref/netcoreapp2.1/_._" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/System.Threading.Tasks.Extensions.4.5.3/ref/xamarinios10/_._" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/System.Threading.Tasks.Extensions.4.5.3/ref/xamarinmac20/_._" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/System.Threading.Tasks.Extensions.4.5.3/ref/xamarintvos10/_._" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/System.Threading.Tasks.Extensions.4.5.3/ref/xamarinwatchos10/_._" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/System.Threading.Tasks.Extensions.4.5.3/useSharedDesignerContext.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/System.Threading.Tasks.Extensions.4.5.3/version.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.config" beforeDir="false" afterPath="$PROJECT_DIR$/app.config" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages.config" beforeDir="false" afterPath="$PROJECT_DIR$/packages.config" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,6 +65,14 @@
       <filtered-out-file-type name="TAG" />
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/10b6135e63434fdba4fc6c109928ab3b50800/df/4a0628f7/TestCaseSourceAttribute.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/63ccfe108ffa44728b417cb47fb2f841763000/12/abf7f667/EditorApplication.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/metadata/f58aa9ca81be4f6db17ef603de68682e45600/6e/85a80f20/Moq.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/d3b66f0ad4e34a55b6ef91ab8487819313c000/8b/ab67e1e7/Component.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/10b6135e63434fdba4fc6c109928ab3b50800/ee/4a4bfd29/MethodWrapper.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/10b6135e63434fdba4fc6c109928ab3b50800/6b/47d1c73e/Reflect.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -49,13 +93,13 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="XThreadsFramesViewSplitterKey" value="0.26732674" />
+    <property name="XThreadsFramesViewSplitterKey" value="0.21846554" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="rider.run.widget.enabled.cache" value="false" />
-    <property name="settings.editor.selected.configurable" value="ReSpellerSettingsId" />
+    <property name="settings.editor.selected.configurable" value="RiderNuGetOptionsPageId" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
@@ -90,7 +134,8 @@
       <updated>1649082234559</updated>
       <workItem from="1649082245720" duration="740000" />
       <workItem from="1649251962138" duration="159000" />
-      <workItem from="1649252331217" duration="4669000" />
+      <workItem from="1649252331217" duration="16131000" />
+      <workItem from="1649342762316" duration="1132000" />
     </task>
     <servers />
   </component>
@@ -118,59 +163,64 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/ComponentsSorter.cs</url>
-          <line>50</line>
-          <properties documentPath="C:\Users\danie\Documents\Git\VirtaMedComponentsSorter\Assets\Scripts\ComponentsSorter.cs" initialLine="50" containingFunctionPresentation="method 'SortComponents'">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/ComponentsCategorizer.cs</url>
+          <line>48</line>
+          <properties documentPath="C:\Users\danie\Documents\Git\VirtaMedComponentsSorter\Assets\Scripts\ComponentsCategorizer.cs" initialLine="48" containingFunctionPresentation="method 'Sort'">
             <startOffsets>
-              <option value="1643" />
+              <option value="1758" />
             </startOffsets>
             <endOffsets>
-              <option value="1770" />
+              <option value="1788" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="3" />
+          <option name="timeStamp" value="40" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Scripts/ComponentsCategorizer.cs</url>
-          <line>43</line>
-          <properties documentPath="C:\Users\danie\Documents\Git\VirtaMedComponentsSorter\Assets\Scripts\ComponentsCategorizer.cs" initialLine="43" containingFunctionPresentation="method 'Sort'">
+          <line>42</line>
+          <properties documentPath="C:\Users\danie\Documents\Git\VirtaMedComponentsSorter\Assets\Scripts\ComponentsCategorizer.cs" initialLine="42" containingFunctionPresentation="method 'Sort'">
             <startOffsets>
-              <option value="1428" />
+              <option value="1410" />
             </startOffsets>
             <endOffsets>
-              <option value="1502" />
+              <option value="1484" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="4" />
+          <option name="timeStamp" value="41" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Scripts/ComponentsCategorizer.cs</url>
-          <line>60</line>
-          <properties documentPath="C:\Users\danie\Documents\Git\VirtaMedComponentsSorter\Assets\Scripts\ComponentsCategorizer.cs" initialLine="60" containingFunctionPresentation="method 'Sort'">
+          <line>58</line>
+          <properties documentPath="C:\Users\danie\Documents\Git\VirtaMedComponentsSorter\Assets\Scripts\ComponentsCategorizer.cs" initialLine="58" containingFunctionPresentation="method 'Sort'">
             <startOffsets>
-              <option value="2226" />
+              <option value="2156" />
             </startOffsets>
             <endOffsets>
-              <option value="2300" />
+              <option value="2230" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="5" />
+          <option name="timeStamp" value="47" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Scripts/ComponentsCategorizer.cs</url>
-          <line>64</line>
-          <properties documentPath="C:\Users\danie\Documents\Git\VirtaMedComponentsSorter\Assets\Scripts\ComponentsCategorizer.cs" initialLine="64" containingFunctionPresentation="method 'Sort'">
+          <line>62</line>
+          <properties documentPath="C:\Users\danie\Documents\Git\VirtaMedComponentsSorter\Assets\Scripts\ComponentsCategorizer.cs" initialLine="62" containingFunctionPresentation="method 'Sort'">
             <startOffsets>
-              <option value="2394" />
+              <option value="2308" />
             </startOffsets>
             <endOffsets>
-              <option value="2468" />
+              <option value="2382" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="6" />
+          <option name="timeStamp" value="48" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="UNITY_DEBUG_RUN_CONFIGURATION">
+        <watch expression="leftComponent" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

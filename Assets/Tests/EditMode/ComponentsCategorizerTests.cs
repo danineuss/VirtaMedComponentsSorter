@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using Assets.Scripts;
 using NSubstitute;
 using NUnit.Framework;
@@ -22,10 +20,12 @@ namespace Tests.EditMode
     {
         private ComponentsCategorizer _componentsCategorizer;
         
+        private static readonly GameObject DummyGameObject = new GameObject("Foo");
+        
         private const string _cSeparatorClassType = "Tests.EditMode.VirtamedSeparatorComponent";
 
         [Test, TestCaseSource(nameof(FindAllComponentsWithoutNameFilterCaseSource))]
-        public void Sort_ShouldFindAllComponentsWithoutNameFilter(
+        public void Sort_ShouldFindAllComponents(
             List<IComponentWithIndex> components, 
             string nameFilter,
             List<IComponentWithIndex> expectedFoundComponents,
@@ -48,46 +48,57 @@ namespace Tests.EditMode
 
         private static IEnumerable<TestCaseData> FindAllComponentsWithoutNameFilterCaseSource()
         {
-            var gameObject = new GameObject("Abc");
-            var componentWithIndexA = Substitute.For<IComponentWithIndex>();
-            componentWithIndexA.Component.Returns(gameObject.AddComponent<VirtamedComponent>());
-            componentWithIndexA.Position.Returns(0);
-            componentWithIndexA.TypeString.Returns("Assets.Scripts.VirtamedComponent");
-            
-            var separatorComponent = Substitute.For<IComponentWithIndex>();
-            separatorComponent.Component.Returns(gameObject.AddComponent<VirtamedSeparatorComponent>());
-            separatorComponent.Position.Returns(1);
-            separatorComponent.TypeString.Returns(_cSeparatorClassType);
-            
-            var componentWithIndexB = Substitute.For<IComponentWithIndex>();
-            componentWithIndexB.Component.Returns(gameObject.AddComponent<DummyComponent>());
-            componentWithIndexB.Position.Returns(2);
-            componentWithIndexB.TypeString.Returns("Tests.EditMode.DummyComponent");
-
             yield return new TestCaseData(
                 new List<IComponentWithIndex>()
                 {
-                    componentWithIndexA,
-                    separatorComponent,
-                    componentWithIndexB
-                }, 
+                    VirtamedComponentSubstitute(0),
+                    SeparatorComponentSubstitute(1),
+                    UnityComponentSubstitute(2)
+                },
                 "",
                 new List<IComponentWithIndex>()
                 {
-                    componentWithIndexA,
-                    separatorComponent,
-                    componentWithIndexB
+                    VirtamedComponentSubstitute(0),
+                    SeparatorComponentSubstitute(1),
+                    UnityComponentSubstitute(2)
                 },
                 new List<IComponentWithIndex>()
                 {
-                    componentWithIndexB
+                    UnityComponentSubstitute(2)
                 },
                 new List<IComponentWithIndex>()
                 {
-                    componentWithIndexA
+                    VirtamedComponentSubstitute(0)
                 },
                 1
             );
+        }
+
+        static IComponentWithIndex VirtamedComponentSubstitute(int position)
+        {
+            var component = Substitute.For<IComponentWithIndex>();
+            component.Component.Returns(DummyGameObject.AddComponent<VirtamedComponent>());
+            component.Position.Returns(position);
+            component.TypeString.Returns("Assets.Scripts.VirtamedComponent");
+            return component;
+        }
+        
+        static IComponentWithIndex SeparatorComponentSubstitute(int position)
+        {
+            var component = Substitute.For<IComponentWithIndex>();
+            component.Component.Returns(DummyGameObject.AddComponent<VirtamedSeparatorComponent>());
+            component.Position.Returns(position);
+            component.TypeString.Returns(_cSeparatorClassType);
+            return component;
+        }
+        
+        static IComponentWithIndex UnityComponentSubstitute(int position)
+        {
+            var component = Substitute.For<IComponentWithIndex>();
+            component.Component.Returns(DummyGameObject.AddComponent<DummyComponent>());
+            component.Position.Returns(position);
+            component.TypeString.Returns("Tests.EditMode.DummyComponent");
+            return component;
         }
 
         static bool ComponentWithIndexListEqual(List<IComponentWithIndex> lhs, List<IComponentWithIndex> rhs)
@@ -97,12 +108,12 @@ namespace Tests.EditMode
 
             for (int i = 0; i < lhs.Count; i++)
             {
-                IComponentWithIndex leftComponent = lhs[i];
-                IComponentWithIndex rightComponent = rhs[i];
-                var a = leftComponent.Component.GetType();
-                if (leftComponent.Component.GetType() != rightComponent.Component.GetType() ||
-                    leftComponent.Position != rightComponent.Position ||
-                    leftComponent.TypeString != rightComponent.TypeString)
+                var lhsType = lhs[i].Component.GetType().ToString();
+                var rhsType = rhs[i].Component.GetType().ToString();
+                
+                if (lhsType != rhsType ||
+                    lhs[i].Position != rhs[i].Position ||
+                    lhs[i].TypeString != rhs[i].TypeString)
                 {
                     return false;
                 }
