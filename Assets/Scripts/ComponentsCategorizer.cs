@@ -18,7 +18,7 @@ namespace Assets.Scripts
         public List<IComponentWithIndex> UnityComponents;
         public List<IComponentWithIndex> FoundComponents;
 
-        public int SeparatorPosition;
+        public int SeparatorPosition { get; private set; }
 
         private readonly string _separatorClassType;
 

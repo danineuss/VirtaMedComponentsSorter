@@ -20,7 +20,7 @@ namespace Assets.Scripts
     {
         public event EventHandler<ComponentMovementArgs> MoveComponentEvent;
 
-        private readonly ComponentsCategorizer _componentsCategorizer;
+        private readonly IComponentsCategorizer _componentsCategorizer;
 
         private readonly List<string> _sortOrder = new List<string>()
         {
@@ -39,7 +39,7 @@ namespace Assets.Scripts
             "OrganHapticsConfigurator"
         };
 
-        public ComponentsSorter(ComponentsCategorizer componentsCategorizer)
+        public ComponentsSorter(IComponentsCategorizer componentsCategorizer)
         {
             _componentsCategorizer = componentsCategorizer;
         }
