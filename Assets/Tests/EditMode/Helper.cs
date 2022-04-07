@@ -17,14 +17,13 @@ namespace Tests.EditMode
     
     public static class Helper
     {
-        private static readonly GameObject DummyGameObject = new GameObject("Foo");
-
         public static IComponentWithIndex VirtamedComponentSubstitute(int position)
         {
+            var dummyGameObject = new GameObject("Foo");
             var component = new Mock<IComponentWithIndex>();
             component
                 .SetupGet(mock => mock.Component)
-                .Returns(DummyGameObject.AddComponent<VirtamedComponent>());
+                .Returns(dummyGameObject.AddComponent<VirtamedComponent>());
             component
                 .SetupGet(mock => mock.Position)
                 .Returns(position);
@@ -36,10 +35,11 @@ namespace Tests.EditMode
         
         public static IComponentWithIndex SeparatorComponentSubstitute(int position, string separatorClassType)
         {
+            var dummyGameObject = new GameObject("Foo");
             var component = new Mock<IComponentWithIndex>();
             component
                 .SetupGet(mock => mock.Component)
-                .Returns(DummyGameObject.AddComponent<VirtamedSeparatorComponent>());
+                .Returns(dummyGameObject.AddComponent<VirtamedSeparatorComponent>());
             component
                 .SetupGet(mock => mock.Position)
                 .Returns(position);
@@ -51,10 +51,11 @@ namespace Tests.EditMode
         
         public static IComponentWithIndex UnityComponentSubstitute(int position)
         {
+            var dummyGameObject = new GameObject("Foo");
             var component = new Mock<IComponentWithIndex>();
             component
                 .SetupGet(mock => mock.Component)
-                .Returns(DummyGameObject.AddComponent<DummyComponent>());
+                .Returns(dummyGameObject.AddComponent<DummyComponent>());
             component
                 .SetupGet(mock => mock.Position)
                 .Returns(position);
