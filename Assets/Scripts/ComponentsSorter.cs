@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
 
 namespace Assets.Scripts
 {
@@ -21,26 +19,9 @@ namespace Assets.Scripts
     {
         public event EventHandler<ComponentMovementArgs> MoveComponentEvent;
 
-        private readonly ComponentsCategorizer _componentsCategorizer;
+        private readonly IComponentsCategorizer _componentsCategorizer;
 
-        private readonly List<string> _sortOrder = new List<string>()
-        {
-            "FuseRenderMeshComponent",
-            "FuseTetMeshComponent",
-            "FuseTriMeshComponent",
-            "FuseTetMeshDistanceFieldComponent",
-            "FuseCobaComponent",
-            "FuseCobaMaterialComponent",
-            "FuseCobaDeformableFixationComponent",
-            "FuseCobaLabelFixationComponent",
-            "FuseCuttableComponent",
-            "FuseGraspedBodyComponent",
-            "FusePaintableComponent",
-            "SoftBodyAnatomy",
-            "OrganHapticsConfigurator"
-        };
-
-        public ComponentsSorter(ComponentsCategorizer componentsCategorizer)
+        public ComponentsSorter(IComponentsCategorizer componentsCategorizer)
         {
             _componentsCategorizer = componentsCategorizer;
         }
@@ -73,20 +54,18 @@ namespace Assets.Scripts
             }
         }
 
-        public void SortVirtamedComponents(List<IComponentWithIndex> componentWithIndices)
+        public void SortVirtamedComponents(List<IComponentWithIndex> componentWithIndices, string nameFilter)
         {
-            foreach (var toSort in Enumerable.Reverse(_sortOrder))
-            {
-                _componentsCategorizer.Sort(componentWithIndices, toSort);
-                if (_componentsCategorizer.FoundComponents.Count <= 0)
-                    continue;
+            _componentsCategorizer.Sort(componentWithIndices, nameFilter);
+            List<IComponentWithIndex> foundComponents = _componentsCategorizer.FoundComponents;
+            if (foundComponents.Count <= 0)
+                return;
 
-                foreach (var component in _componentsCategorizer.FoundComponents)
-                {
-                    var componentMovementArgs = new ComponentMovementArgs(
-                        component, component.Position - _componentsCategorizer.SeparatorPosition - 1);
-                    MoveComponentEvent?.Invoke(this, componentMovementArgs);
-                }
+            foreach (var component in foundComponents)
+            {
+                var componentMovementArgs = new ComponentMovementArgs(
+                    component, component.Position - _componentsCategorizer.SeparatorPosition - 1);
+                MoveComponentEvent?.Invoke(this, componentMovementArgs);
             }
         }
     }

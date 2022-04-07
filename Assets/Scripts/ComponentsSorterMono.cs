@@ -17,6 +17,32 @@ namespace Assets.Scripts
     {
         private ComponentsSorter _componentsSorter;
 
+        private readonly List<string> _virtamedIdentifiers = new List<string>
+        {
+            "Virta",
+            "Fuse",
+            "SoftBody",
+            "OrganHaptics",
+            "ICG"
+        };
+        private readonly List<string> _sortOrder = new List<string>
+        {
+            "FuseRenderMeshComponent",
+            "FuseTetMeshComponent",
+            "FuseTriMeshComponent",
+            "FuseTetMeshDistanceFieldComponent",
+            "FuseCobaComponent",
+            "FuseCobaMaterialComponent",
+            "FuseCobaDeformableFixationComponent",
+            "FuseCobaLabelFixationComponent",
+            "FuseCuttableComponent",
+            "FuseGraspedBodyComponent",
+            "FusePaintableComponent",
+            "SoftBodyAnatomy",
+            "OrganHapticsConfigurator",
+            "VirtamedComponent"
+        };
+
         public void SortComponents()
         {
             if (_componentsSorter == null)
@@ -24,12 +50,16 @@ namespace Assets.Scripts
 
             _componentsSorter.AllVanillaUnityComponentsUp(ComponentWithIndices());
             _componentsSorter.AllVirtamedComponentsDown(ComponentWithIndices());
-            _componentsSorter.SortVirtamedComponents(ComponentWithIndices());
-       }
+            
+            foreach (var toSort in Enumerable.Reverse(_sortOrder))
+                _componentsSorter.SortVirtamedComponents(ComponentWithIndices(), toSort);
+        }
 
         private void InitializeComponentsSorter()
         {
-            _componentsSorter = new ComponentsSorter(new ComponentsCategorizer(this.GetType().ToString()));
+            _componentsSorter = new ComponentsSorter(
+                new ComponentsCategorizer(this.GetType().ToString(), _virtamedIdentifiers)
+            );
 
             _componentsSorter.MoveComponentEvent += ComponentsSorterOnMoveComponentEvent;
         }

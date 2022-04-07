@@ -9,22 +9,25 @@
 #if UNITY_EDITOR
 #endif
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Assets.Scripts
 {
-    public class ComponentsCategorizer
+    public class ComponentsCategorizer : IComponentsCategorizer
     {
-        public List<IComponentWithIndex> VirtaComponents;
-        public List<IComponentWithIndex> UnityComponents;
-        public List<IComponentWithIndex> FoundComponents;
+        public List<IComponentWithIndex> VirtaComponents { get; private set; }
+        public List<IComponentWithIndex> UnityComponents { get; private set; }
+        public List<IComponentWithIndex> FoundComponents { get; private set; }
 
-        public int SeparatorPosition;
+        public int SeparatorPosition { get; private set; }
 
         private readonly string _separatorClassType;
+        private readonly List<string> _virtamedIdentifiers;
 
-        public ComponentsCategorizer(string separatorClassType)
+        public ComponentsCategorizer(string separatorClassType, List<string> virtamedIdentifiers)
         {
             _separatorClassType = separatorClassType;
+            _virtamedIdentifiers = virtamedIdentifiers;
         }
 
         public void Sort(List<IComponentWithIndex> componentsWithIndex, string nameFilter = "")
@@ -50,20 +53,18 @@ namespace Assets.Scripts
                     continue;
                 }
 
-                if (componentType.Contains("Virta") ||
-                    componentType.Contains("Fuse") ||
-                    componentType.Contains("SoftBody") ||
-                    componentType.Contains("OrganHaptics") ||
-                    componentType.Contains("ICG"))
-                {
+                if (IsVirtamedComponents(componentType))
                     VirtaComponents.Add(new ComponentWithIndex(counter, component.Component));
-                }
                 else
-                {
                     UnityComponents.Add(new ComponentWithIndex(counter, component.Component));
-                }
+                
                 counter++;
             }
+        }
+
+        private bool IsVirtamedComponents(string componentType)
+        {
+            return _virtamedIdentifiers.Any(virtamedIdentifier => componentType.Contains(virtamedIdentifier));
         }
     }
 }
