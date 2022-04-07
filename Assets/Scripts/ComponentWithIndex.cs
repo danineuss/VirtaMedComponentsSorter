@@ -4,14 +4,14 @@ namespace Assets.Scripts
 {
     public interface IComponentWithIndex
     {
-        int Position { get; set; }
+        int Position { get; }
         Component Component { get; }
         string TypeString { get; }
     }
 
     public class ComponentWithIndex : IComponentWithIndex
     {
-        public int Position { get; set; }
+        public int Position { get; }
         public Component Component { get; }
         public string TypeString => Component.GetType().ToString();
 
