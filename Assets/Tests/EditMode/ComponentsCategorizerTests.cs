@@ -1,27 +1,13 @@
 ﻿using System.Collections.Generic;
 using Assets.Scripts;
-using NSubstitute;
 using NUnit.Framework;
-using UnityEngine;
 
 namespace Tests.EditMode
 {
-    internal class VirtamedSeparatorComponent : MonoBehaviour
-    {
-        public string Name { get; set; }
-    }
-    
-    internal class DummyComponent : MonoBehaviour
-    {
-        public string Name { get; set; }
-    }
-    
     public class ComponentsCategorizerTests
     {
         private ComponentsCategorizer _componentsCategorizer;
-        
-        private static readonly GameObject DummyGameObject = new GameObject("Foo");
-        
+
         private const string _cSeparatorClassType = "Tests.EditMode.VirtamedSeparatorComponent";
 
         [Test, TestCaseSource(nameof(FindAllComponentsWithoutNameFilterCaseSource))]
@@ -40,9 +26,12 @@ namespace Tests.EditMode
             _componentsCategorizer.Sort(components, nameFilter);
             
             // Assert
-            Assert.True(ComponentWithIndexListEqual(expectedFoundComponents, _componentsCategorizer.FoundComponents));
-            Assert.True(ComponentWithIndexListEqual(expectedUnityComponents, _componentsCategorizer.UnityComponents));
-            Assert.True(ComponentWithIndexListEqual(expectedVirtaComponents, _componentsCategorizer.VirtaComponents));
+            Assert.True(Helper.ComponentWithIndexListEqual(
+                expectedFoundComponents, _componentsCategorizer.FoundComponents));
+            Assert.True(Helper.ComponentWithIndexListEqual(
+                expectedUnityComponents, _componentsCategorizer.UnityComponents));
+            Assert.True(Helper.ComponentWithIndexListEqual(
+                expectedVirtaComponents, _componentsCategorizer.VirtaComponents));
             Assert.AreEqual(expectedSeparatorPosition, _componentsCategorizer.SeparatorPosition);
         }
 
@@ -51,75 +40,154 @@ namespace Tests.EditMode
             yield return new TestCaseData(
                 new List<IComponentWithIndex>()
                 {
-                    VirtamedComponentSubstitute(0),
-                    SeparatorComponentSubstitute(1),
-                    UnityComponentSubstitute(2)
+                    Helper.VirtamedComponentSubstitute(0),
+                    Helper.SeparatorComponentSubstitute(1, _cSeparatorClassType),
+                    Helper.UnityComponentSubstitute(2)
                 },
                 "",
                 new List<IComponentWithIndex>()
                 {
-                    VirtamedComponentSubstitute(0),
-                    SeparatorComponentSubstitute(1),
-                    UnityComponentSubstitute(2)
+                    Helper.VirtamedComponentSubstitute(0),
+                    Helper.SeparatorComponentSubstitute(1, _cSeparatorClassType),
+                    Helper.UnityComponentSubstitute(2)
                 },
                 new List<IComponentWithIndex>()
                 {
-                    UnityComponentSubstitute(2)
+                    Helper.UnityComponentSubstitute(2)
                 },
                 new List<IComponentWithIndex>()
                 {
-                    VirtamedComponentSubstitute(0)
+                    Helper.VirtamedComponentSubstitute(0)
                 },
                 1
             );
-        }
-
-        static IComponentWithIndex VirtamedComponentSubstitute(int position)
-        {
-            var component = Substitute.For<IComponentWithIndex>();
-            component.Component.Returns(DummyGameObject.AddComponent<VirtamedComponent>());
-            component.Position.Returns(position);
-            component.TypeString.Returns("Assets.Scripts.VirtamedComponent");
-            return component;
-        }
-        
-        static IComponentWithIndex SeparatorComponentSubstitute(int position)
-        {
-            var component = Substitute.For<IComponentWithIndex>();
-            component.Component.Returns(DummyGameObject.AddComponent<VirtamedSeparatorComponent>());
-            component.Position.Returns(position);
-            component.TypeString.Returns(_cSeparatorClassType);
-            return component;
-        }
-        
-        static IComponentWithIndex UnityComponentSubstitute(int position)
-        {
-            var component = Substitute.For<IComponentWithIndex>();
-            component.Component.Returns(DummyGameObject.AddComponent<DummyComponent>());
-            component.Position.Returns(position);
-            component.TypeString.Returns("Tests.EditMode.DummyComponent");
-            return component;
-        }
-
-        static bool ComponentWithIndexListEqual(List<IComponentWithIndex> lhs, List<IComponentWithIndex> rhs)
-        {
-            if (lhs.Count != rhs.Count)
-                return false;
-
-            for (int i = 0; i < lhs.Count; i++)
-            {
-                var lhsType = lhs[i].Component.GetType().ToString();
-                var rhsType = rhs[i].Component.GetType().ToString();
-                
-                if (lhsType != rhsType ||
-                    lhs[i].Position != rhs[i].Position ||
-                    lhs[i].TypeString != rhs[i].TypeString)
+            yield return new TestCaseData(
+                new List<IComponentWithIndex>()
                 {
-                    return false;
-                }
-            }
-
-            return true;
+                    Helper.VirtamedComponentSubstitute(0),
+                    Helper.VirtamedComponentSubstitute(1),
+                    Helper.VirtamedComponentSubstitute(2),
+                    Helper.VirtamedComponentSubstitute(3),
+                    Helper.VirtamedComponentSubstitute(4)
+                },
+                "",
+                new List<IComponentWithIndex>()
+                {
+                    Helper.VirtamedComponentSubstitute(0),
+                    Helper.VirtamedComponentSubstitute(1),
+                    Helper.VirtamedComponentSubstitute(2),
+                    Helper.VirtamedComponentSubstitute(3),
+                    Helper.VirtamedComponentSubstitute(4)
+                },
+                new List<IComponentWithIndex>(),
+                new List<IComponentWithIndex>()
+                {
+                    Helper.VirtamedComponentSubstitute(0),
+                    Helper.VirtamedComponentSubstitute(1),
+                    Helper.VirtamedComponentSubstitute(2),
+                    Helper.VirtamedComponentSubstitute(3),
+                    Helper.VirtamedComponentSubstitute(4)
+                },
+                0
+            );
+            yield return new TestCaseData(
+                new List<IComponentWithIndex>()
+                {
+                    Helper.UnityComponentSubstitute(0),
+                    Helper.UnityComponentSubstitute(1),
+                    Helper.UnityComponentSubstitute(2),
+                    Helper.UnityComponentSubstitute(3),
+                    Helper.UnityComponentSubstitute(4)
+                },
+                "",
+                new List<IComponentWithIndex>()
+                {
+                    Helper.UnityComponentSubstitute(0),
+                    Helper.UnityComponentSubstitute(1),
+                    Helper.UnityComponentSubstitute(2),
+                    Helper.UnityComponentSubstitute(3),
+                    Helper.UnityComponentSubstitute(4)
+                },
+                new List<IComponentWithIndex>()
+                {
+                    Helper.UnityComponentSubstitute(0),
+                    Helper.UnityComponentSubstitute(1),
+                    Helper.UnityComponentSubstitute(2),
+                    Helper.UnityComponentSubstitute(3),
+                    Helper.UnityComponentSubstitute(4)
+                },
+                new List<IComponentWithIndex>(),
+                0
+            );
+            yield return new TestCaseData(
+                new List<IComponentWithIndex>()
+                {
+                    Helper.SeparatorComponentSubstitute(0, _cSeparatorClassType),
+                },
+                "",
+                new List<IComponentWithIndex>()
+                {
+                    Helper.SeparatorComponentSubstitute(0, _cSeparatorClassType),
+                },
+                new List<IComponentWithIndex>(),
+                new List<IComponentWithIndex>(),
+                0
+            );
+            yield return new TestCaseData(
+                new List<IComponentWithIndex>()
+                {
+                    Helper.VirtamedComponentSubstitute(0),
+                    Helper.UnityComponentSubstitute(1),
+                    Helper.SeparatorComponentSubstitute(2, _cSeparatorClassType),
+                    Helper.UnityComponentSubstitute(3),
+                    Helper.UnityComponentSubstitute(4),
+                    Helper.VirtamedComponentSubstitute(5)
+                },
+                "Dummy",
+                new List<IComponentWithIndex>()
+                {
+                    Helper.UnityComponentSubstitute(1),
+                    Helper.UnityComponentSubstitute(3),
+                    Helper.UnityComponentSubstitute(4)
+                },
+                new List<IComponentWithIndex>()
+                {
+                    Helper.UnityComponentSubstitute(1),
+                    Helper.UnityComponentSubstitute(3),
+                    Helper.UnityComponentSubstitute(4)
+                },
+                new List<IComponentWithIndex>()
+                {
+                    Helper.VirtamedComponentSubstitute(0),
+                    Helper.VirtamedComponentSubstitute(5)
+                },
+                2
+            );
+            yield return new TestCaseData(
+                new List<IComponentWithIndex>()
+                {
+                    Helper.VirtamedComponentSubstitute(0),
+                    Helper.UnityComponentSubstitute(1),
+                    Helper.SeparatorComponentSubstitute(2, _cSeparatorClassType),
+                    Helper.UnityComponentSubstitute(3),
+                    Helper.UnityComponentSubstitute(4),
+                    Helper.VirtamedComponentSubstitute(5)
+                },
+                "Non-applicable",
+                new List<IComponentWithIndex>(),
+                new List<IComponentWithIndex>()
+                {
+                    Helper.UnityComponentSubstitute(1),
+                    Helper.UnityComponentSubstitute(3),
+                    Helper.UnityComponentSubstitute(4)
+                },
+                new List<IComponentWithIndex>()
+                {
+                    Helper.VirtamedComponentSubstitute(0),
+                    Helper.VirtamedComponentSubstitute(5)
+                },
+                2
+            );
         }
     }
 }
