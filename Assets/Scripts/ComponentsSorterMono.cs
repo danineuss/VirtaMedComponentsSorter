@@ -6,56 +6,71 @@
 * materials may be made without the express consent of VirtaMed AG.
 */
 
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
-namespace VirtaMed.Unity.Common
+namespace Assets.Scripts
 {
     [DisallowMultipleComponent]
-    public partial class ComponentsSorterMono : MonoBehaviour
+    public class ComponentsSorterMono : MonoBehaviour
     {
-        private ComponentsSorter _componentsSorter = null;
+        private ComponentsSorter _componentsSorter;
 
         public void SortComponents()
         {
             if (_componentsSorter == null)
                 InitializeComponentsSorter();
 
-            _componentsSorter.SortComponents(gameObject.GetComponents(typeof(Component)));
-        }
+            _componentsSorter.AllVanillaUnityComponentsUp(ComponentWithIndices());
+            _componentsSorter.AllVirtamedComponentsDown(ComponentWithIndices());
+            _componentsSorter.SortVirtamedComponents(ComponentWithIndices());
+       }
 
         private void InitializeComponentsSorter()
         {
             _componentsSorter = new ComponentsSorter(new ComponentsCategorizer(this.GetType().ToString()));
 
-            _componentsSorter.MoveComponentDownEvent += MoveComponentDownEvent;
-            _componentsSorter.MoveComponentUpEvent += MoveComponentUpEvent;
+            _componentsSorter.MoveComponentEvent += ComponentsSorterOnMoveComponentEvent;
         }
 
-        private void MoveComponentDownEvent(object sender, ComponentMovementArgs e)
+        private void ComponentsSorterOnMoveComponentEvent(object sender, ComponentMovementArgs e)
         {
-            int numberOfMovements = e.NumberOfMovements;
+            if (e.NumberOfMovements > 0)
+                MoveComponentUp(e.ComponentWithIndex.Component, e.NumberOfMovements);
+            else
+                MoveComponentDown(e.ComponentWithIndex.Component, -e.NumberOfMovements);
+        }
+
+        private static void MoveComponentUp(Component component, int numberOfMovements)
+        {
             while (numberOfMovements > 0)
             {
 #if UNITY_EDITOR
-                UnityEditorInternal.ComponentUtility.MoveComponentDown(e.ComponentWithIndex.component);
+                UnityEditorInternal.ComponentUtility.MoveComponentUp(component);
+#endif
+                numberOfMovements--;
+            }
+        }
+        
+        private static void MoveComponentDown(Component component, int numberOfMovements)
+        {
+            while (numberOfMovements > 0)
+            {
+#if UNITY_EDITOR
+                UnityEditorInternal.ComponentUtility.MoveComponentDown(component);
 #endif
                 numberOfMovements--;
             }
         }
 
-        private void MoveComponentUpEvent(object sender, ComponentMovementArgs e)
+        private List<IComponentWithIndex> ComponentWithIndices()
         {
-            int numberOfMovements = e.NumberOfMovements;
-            while (numberOfMovements > 0)
-            {
-#if UNITY_EDITOR
-                UnityEditorInternal.ComponentUtility.MoveComponentUp(e.ComponentWithIndex.component);
-#endif
-                numberOfMovements--;
-            }
+            var components = gameObject.GetComponents(typeof(Component));
+            
+            var position = 0;
+            return new List<IComponentWithIndex>(
+                components.Select(x => new ComponentWithIndex(position++, x)));
         }
     }
 }

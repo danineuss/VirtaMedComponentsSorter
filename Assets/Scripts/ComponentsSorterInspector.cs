@@ -8,9 +8,8 @@
 
 using UnityEditor;
 using UnityEngine;
-using VirtaMed.Unity.Common;
 
-namespace VirtaMed.Unity.EditorExtensions.CustomInspectors
+namespace Assets.Scripts
 {
     [CustomEditor(typeof(ComponentsSorterMono))]
     public class ComponentsSorterInspector : Editor
@@ -52,7 +51,8 @@ namespace VirtaMed.Unity.EditorExtensions.CustomInspectors
             }
 
             _componentSorterMono = target as ComponentsSorterMono;
-            _componentSorterMono.SortComponents();
+            if (_componentSorterMono != null) 
+                _componentSorterMono.SortComponents();
         }
     }
 }

@@ -17,7 +17,8 @@
         "System.Threading.Tasks.Extensions.dll",
         "Castle.Core.dll",
         "System.Runtime.CompilerServices.Unsafe.dll",
-        "NSubstitute.dll"
+        "NSubstitute.dll",
+        "Moq.dll"
     ],
     "autoReferenced": false,
     "defineConstraints": [
