@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Assets.Scripts;
+using Assets.Scripts.Components;
 using Moq;
 using UnityEngine;
 
@@ -29,7 +30,55 @@ namespace Tests.EditMode
                 .Returns(position);
             component
                 .SetupGet(mock => mock.TypeString)
-                .Returns("Assets.Scripts.VirtamedComponent");
+                .Returns(dummyGameObject.GetComponent<VirtamedComponent>().GetType().ToString());
+            return component.Object;
+        }
+        
+        public static IComponentWithIndex BarVirtaComponent(int position)
+        {
+            var dummyGameObject = new GameObject("Foo");
+            var component = new Mock<IComponentWithIndex>();
+            component
+                .SetupGet(mock => mock.Component)
+                .Returns(dummyGameObject.AddComponent<BarVirtaComponent>());
+            component
+                .SetupGet(mock => mock.Position)
+                .Returns(position);
+            component
+                .SetupGet(mock => mock.TypeString)
+                .Returns(dummyGameObject.GetComponent<BarVirtaComponent>().GetType().ToString());
+            return component.Object;
+        }
+        
+        public static IComponentWithIndex BazVirtaComponent(int position)
+        {
+            var dummyGameObject = new GameObject("Foo");
+            var component = new Mock<IComponentWithIndex>();
+            component
+                .SetupGet(mock => mock.Component)
+                .Returns(dummyGameObject.AddComponent<BazVirtaComponent>());
+            component
+                .SetupGet(mock => mock.Position)
+                .Returns(position);
+            component
+                .SetupGet(mock => mock.TypeString)
+                .Returns(dummyGameObject.GetComponent<BazVirtaComponent>().GetType().ToString());
+            return component.Object;
+        }
+        
+        public static IComponentWithIndex FooVirtaComponent(int position)
+        {
+            var dummyGameObject = new GameObject("Foo");
+            var component = new Mock<IComponentWithIndex>();
+            component
+                .SetupGet(mock => mock.Component)
+                .Returns(dummyGameObject.AddComponent<FooVirtaComponent>());
+            component
+                .SetupGet(mock => mock.Position)
+                .Returns(position);
+            component
+                .SetupGet(mock => mock.TypeString)
+                .Returns(dummyGameObject.GetComponent<FooVirtaComponent>().GetType().ToString());
             return component.Object;
         }
         
@@ -61,7 +110,7 @@ namespace Tests.EditMode
                 .Returns(position);
             component
                 .SetupGet(mock => mock.TypeString)
-                .Returns("Tests.EditMode.DummyComponent");
+                .Returns(dummyGameObject.GetComponent<DummyComponent>().GetType().ToString());
             return component.Object;
         }
 
