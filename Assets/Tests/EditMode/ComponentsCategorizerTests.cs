@@ -10,7 +10,7 @@ namespace Tests.EditMode
 
         private const string _cSeparatorClassType = "Tests.EditMode.VirtamedSeparatorComponent";
 
-        [Test, TestCaseSource(nameof(FindAllComponentsWithoutNameFilterCaseSource))]
+        [Test, TestCaseSource(nameof(ShouldFindAllComponentsCaseSource))]
         public void Sort_ShouldFindAllComponents(
             List<IComponentWithIndex> components, 
             string nameFilter,
@@ -35,7 +35,7 @@ namespace Tests.EditMode
             Assert.AreEqual(expectedSeparatorPosition, _componentsCategorizer.SeparatorPosition);
         }
 
-        private static IEnumerable<TestCaseData> FindAllComponentsWithoutNameFilterCaseSource()
+        private static IEnumerable<TestCaseData> ShouldFindAllComponentsCaseSource()
         {
             yield return new TestCaseData(
                 new List<IComponentWithIndex>()
