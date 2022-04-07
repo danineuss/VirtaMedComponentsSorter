@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Assets.Scripts;
 using Moq;
 using NUnit.Framework;
+using UnityEditor;
 
 namespace Tests.EditMode
 {
@@ -199,6 +200,86 @@ namespace Tests.EditMode
                 {
                     new ComponentMovementArgs(Helper.VirtamedComponentSubstitute(0), -2)
                 }
+            );
+            
+            var componentsCategorizerB = new Mock<IComponentsCategorizer>();
+            componentsCategorizerB
+                .SetupGet(mock => mock.VirtaComponents)
+                .Returns(new List<IComponentWithIndex>
+                {
+                    Helper.VirtamedComponentSubstitute(1),
+                    Helper.VirtamedComponentSubstitute(5)
+                });
+            componentsCategorizerB
+                .SetupGet(mock => mock.SeparatorPosition)
+                .Returns(0);
+
+            yield return new TestCaseData(
+                new List<IComponentWithIndex>
+                {
+                    Helper.SeparatorComponentSubstitute(0, _cSeparatorClassType),
+                    Helper.VirtamedComponentSubstitute(1),
+                    Helper.UnityComponentSubstitute(2),
+                    Helper.UnityComponentSubstitute(3),
+                    Helper.UnityComponentSubstitute(4),
+                    Helper.VirtamedComponentSubstitute(5)
+                },
+                componentsCategorizerB,
+                new List<ComponentMovementArgs>()
+            );
+            
+            var componentsCategorizerC = new Mock<IComponentsCategorizer>();
+            componentsCategorizerC
+                .SetupGet(mock => mock.VirtaComponents)
+                .Returns(new List<IComponentWithIndex>
+                {
+                    Helper.VirtamedComponentSubstitute(1),
+                    Helper.VirtamedComponentSubstitute(5)
+                });
+            componentsCategorizerC
+                .SetupGet(mock => mock.SeparatorPosition)
+                .Returns(6);
+
+            yield return new TestCaseData(
+                new List<IComponentWithIndex>
+                {
+                    Helper.UnityComponentSubstitute(0),
+                    Helper.VirtamedComponentSubstitute(1),
+                    Helper.UnityComponentSubstitute(2),
+                    Helper.UnityComponentSubstitute(3),
+                    Helper.UnityComponentSubstitute(4),
+                    Helper.VirtamedComponentSubstitute(5),
+                    Helper.SeparatorComponentSubstitute(6, _cSeparatorClassType),
+                },
+                componentsCategorizerC,
+                new List<ComponentMovementArgs>
+                {
+                    new ComponentMovementArgs(Helper.VirtamedComponentSubstitute(1), -5),
+                    new ComponentMovementArgs(Helper.VirtamedComponentSubstitute(5), -1)
+                }
+            );
+            
+            var componentsCategorizerD = new Mock<IComponentsCategorizer>();
+            componentsCategorizerD
+                .SetupGet(mock => mock.VirtaComponents)
+                .Returns(new List<IComponentWithIndex>());
+            componentsCategorizerD
+                .SetupGet(mock => mock.SeparatorPosition)
+                .Returns(6);
+
+            yield return new TestCaseData(
+                new List<IComponentWithIndex>
+                {
+                    Helper.UnityComponentSubstitute(0),
+                    Helper.UnityComponentSubstitute(1),
+                    Helper.UnityComponentSubstitute(2),
+                    Helper.UnityComponentSubstitute(3),
+                    Helper.UnityComponentSubstitute(4),
+                    Helper.UnityComponentSubstitute(5),
+                    Helper.SeparatorComponentSubstitute(6, _cSeparatorClassType),
+                },
+                componentsCategorizerD,
+                new List<ComponentMovementArgs>()
             );
         }
     }
