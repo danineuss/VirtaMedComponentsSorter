@@ -7,7 +7,8 @@ namespace Tests.EditMode
     public class ComponentsCategorizerTests
     {
         private ComponentsCategorizer _componentsCategorizer;
-
+        
+        private readonly List<string> _virtamedIdentifiers = new List<string>() { "Virta", "Foo" };
         private const string _cSeparatorClassType = "Tests.EditMode.VirtamedSeparatorComponent";
 
         [Test, TestCaseSource(nameof(ShouldFindAllComponentsCaseSource))]
@@ -20,7 +21,7 @@ namespace Tests.EditMode
             int expectedSeparatorPosition)
         {
             // Arrange
-            _componentsCategorizer = new ComponentsCategorizer(_cSeparatorClassType);
+            _componentsCategorizer = new ComponentsCategorizer(_cSeparatorClassType, _virtamedIdentifiers);
             
             // Act
             _componentsCategorizer.Sort(components, nameFilter);

@@ -17,6 +17,15 @@ namespace Assets.Scripts
     {
         private ComponentsSorter _componentsSorter;
 
+        private readonly List<string> _virtamedIdentifiers = new List<string>()
+        {
+            "Virta",
+            "Fuse",
+            "SoftBody",
+            "OrganHaptics",
+            "ICG"
+        };
+
         public void SortComponents()
         {
             if (_componentsSorter == null)
@@ -29,7 +38,8 @@ namespace Assets.Scripts
 
         private void InitializeComponentsSorter()
         {
-            _componentsSorter = new ComponentsSorter(new ComponentsCategorizer(this.GetType().ToString()));
+            _componentsSorter = new ComponentsSorter(new ComponentsCategorizer(
+                this.GetType().ToString(), _virtamedIdentifiers));
 
             _componentsSorter.MoveComponentEvent += ComponentsSorterOnMoveComponentEvent;
         }
